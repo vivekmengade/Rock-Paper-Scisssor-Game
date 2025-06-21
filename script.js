@@ -12,15 +12,17 @@ const gencompchoice = () => {
     return options[randomid];
 }
 
-const showwinner = (user_win) => {
+const showwinner = (user_win,id, compchoice) => {
     if (user_win) {
         console.log('User wins!');
-        msg.innerHTML = 'You win!';
+        msg.innerHTML =` You win! ${id} beats ${compchoice}`;
+        msg.style.backgroundColor = 'green';
         you.innerHTML = user_score;
         computer.innerHTML = computer_score;
     } else {
         console.log('Computer wins!');
-        msg.innerHTML = 'Computer wins!';
+        msg.innerHTML =` You lost! ${compchoice} beats ${id}`;
+        msg.style.backgroundColor = 'red';
         you.innerHTML = user_score;
         computer.innerHTML = computer_score;
     }
@@ -34,6 +36,7 @@ const playgame = (id) => {
     if (id === compchoice) {
         console.log('Game was a draw');
         msg.innerHTML = `It's a draw!`;
+        msg.style.backgroundColor = '#081b31';
         return;
     }
 
@@ -52,7 +55,7 @@ const playgame = (id) => {
         user_win = true;
         user_score++;
     }
-    showwinner(user_win);
+    showwinner(user_win ,id, compchoice);
 }
 
 choices.forEach((choice) => {
